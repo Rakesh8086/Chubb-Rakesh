@@ -3,12 +3,14 @@ package com.example.demo.request;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
-public class Order {
+public class Orders {
 	
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
 	@NotBlank
@@ -17,8 +19,15 @@ public class Order {
 	private float cost;
 	@Min(value = 1)
 	private int quantity;
-	private Address address;
+	// private Address address;
 	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}	
 	public String getItem() {
 		return item;
 	}
@@ -37,10 +46,10 @@ public class Order {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public Address getAddress() {
+	/*public Address getAddress() {
 		return address;
 	}
 	public void setAddress(Address address) {
 		this.address = address;
-	}
+	}*/
 }

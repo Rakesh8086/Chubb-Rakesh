@@ -2,28 +2,27 @@ package com.example.demo.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.request.Order;
+import com.example.demo.request.Orders;
 import com.example.demo.service.OrderService;
 
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@Slf4j
 public class OrderController {
-	@Autowired
-	private OrderService service;
-	@GetMapping("/order")
-	public String getOrder() {
-	    return "hello";
-	}
-	
-	@PostMapping("/order")
-	public Order saveOrder(@Valid @RequestBody Order order) {
-		service.insertOrder(order);
-		return order;
-	}
+
+    @Autowired
+    private OrderService service;
+
+    @PostMapping("/order")
+    public Orders saveOrder(@Valid @RequestBody Orders order) {
+        log.debug("logger added");
+        service.insertOrder(order);
+        return order;
+    }
 }
